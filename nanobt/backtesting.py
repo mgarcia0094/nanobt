@@ -12,9 +12,7 @@ class Backtesting():
         self.trades = []
         self.entryorder = None
         self.exitorder = None
-        self.candles = []
-
-
+        self.candles = None
 
     def setdata(self, data):
         assert isinstance(data, pd.DataFrame), "DATA must be instance of pandas Dataframe"
@@ -41,8 +39,8 @@ class Backtesting():
             self.entryorder = None
             self.exitorder = None
 
-    def buy(self, price=None):
-        price = self.candles[0]['close']
+    def buy(self):
+        price = self.candles['close'][-1]
         if self.entryorder == None:
             self.entryorder = Order(SideOrder.BUY, price)
         else:
@@ -51,8 +49,8 @@ class Backtesting():
         self.savetrade()
         return True
 
-    def sell(self, price=None):
-        price = self.candles[0]['close']
+    def sell(self):
+        price = self.candles['close'][-1]
         if self.entryorder == None:
             self.entryorder = Order(SideOrder.SELL, price)
         else:
@@ -67,9 +65,21 @@ class Backtesting():
     def run(self):
         assert isinstance(self.data, pd.DataFrame), "DATA MUST BE DATAFRAME"
 
-        for x in range(0, len(self.data)):
+        for x in range(1, len(self.data)):
+            # print(self.data[:x])
             self.candles = pd.DataFrame(self.data[:x])
             self.next()
+        
+        if self.entryorder:
+            if not self.exitorder:
+                if self.entryorder.side == SideOrder.BUY:
+                    self.exitorder = Order(SideOrder.SELL, self.candles['close'][-1])
+                elif self.entryorder.side == SideOrder.SELL:
+                    self.exitorder = Order(SideOrder.BUY, self.candles['close'][-1])
+                else:
+                    raise Exception("RUN SIDE UNKNOWN")
+                self.savetrade()
+        
         return self.trades
 
         
