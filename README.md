@@ -2,6 +2,12 @@
 
 A quickly backtesting library for inversion strategies
 
+## Install package
+
+```
+pip install nanobt
+```
+
 # Data as pd.DataFrame
 
 Columns required = ['datetime', 'open', 'high', 'low', 'close', 'volume']
