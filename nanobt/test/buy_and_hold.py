@@ -1,4 +1,5 @@
-import nanobt
+from nanobt.backtesting import Backtesting
+from nanobt.trades import TradeHistory
 import pandas as pd
 
 INIT_PORTFOLIO = 1000
