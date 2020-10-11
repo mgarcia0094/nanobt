@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="nanobt", # Replace with your own username
+    name="nanobt",
     version="0.0.5",
     author="Miguel Ángel García Gandía",
     author_email="-",
