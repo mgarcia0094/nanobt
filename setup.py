@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="nanobt",
-    version="0.0.5",
+    version="0.1.0",
     author="Miguel Ángel García Gandía",
     author_email="-",
     description="A quickly backtesting library for inversion strategies",
