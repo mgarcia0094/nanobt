@@ -28,7 +28,7 @@ class EMAStrategy(Backtesting):
             if self.rapid_ema[-1] > self.slow_ema[-1]:
                 if self.position.side == SideOrder.SELL:
                     self.exit()
-            else:
+            elif self.rapid_ema[-1] < self.slow_ema[-1]:
                 if self.position.side == SideOrder.BUY:
                     self.exit()
 
@@ -40,8 +40,8 @@ data = data.drop(columns=['time'])
 strategy = EMAStrategy(value_rapid_ema=18, value_slow_ema=34)
 strategy.setdata(data)
 trades = strategy.run()
-
 th = TradeHistory(trades=trades)
+
 print("Init Portfolio: ", INIT_PORTFOLIO)
-print("EMA Strategy: ", th.study(cash=INIT_PORTFOLIO, sizer=1, commision=0.04, show_plot=True))
+print("EMA Strategy: ", th.study(cash=INIT_PORTFOLIO, sizer=0.1, commision=0.04, show_plot=True))
 
