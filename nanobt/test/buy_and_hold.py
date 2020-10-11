@@ -2,8 +2,7 @@ import nanobt
 import pandas as pd
 
 INIT_PORTFOLIO = 1000
-
-class BuyAndHoldStrategy(nanobt.backtesting.Backtesting):
+class BuyAndHoldStrategy(Backtesting):
     def __init__(self):
         super().__init__()
         self.buy_and_hold = False
@@ -21,7 +20,7 @@ strategy = BuyAndHoldStrategy()
 strategy.setdata(data)
 trades = strategy.run()
 
-th = nanobt.trades.TradeHistory(trades=trades)
+th = TradeHistory(trades=trades)
 print("Init Portfolio: ", INIT_PORTFOLIO)
 print("Buy and Hold Strategy: ", th.study(cash=INIT_PORTFOLIO, sizer=1, commision=0.04, show_plot=False))
 

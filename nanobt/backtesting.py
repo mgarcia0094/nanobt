@@ -1,7 +1,6 @@
 import pandas as pd
 from pandas.api.types import is_numeric_dtype, is_datetime64_any_dtype
-
-from trades import Order, Trade, SideOrder
+from .trades import Order, Trade, SideOrder
 
 columns_supported = ['datetime', 'open', 'high', 'low', 'close', 'volume']
 
