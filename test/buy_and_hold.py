@@ -13,7 +13,7 @@ class BuyAndHoldStrategy(nanobt.backtesting.Backtesting):
             self.buy_and_hold = True
             self.buy()
 
-data = pd.read_csv('../data/binance_BTCUSDT_5m.csv')
+data = pd.read_csv('./data/binance_BTCUSDT_5m.csv')
 data['datetime'] = pd.to_datetime(data['time'], unit='s')
 data = data.drop(columns=['time'])
 
