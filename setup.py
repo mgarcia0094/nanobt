@@ -7,7 +7,7 @@ setuptools.setup(
     name="nanobt",
     version="0.1.0",
     author="Miguel Ángel García Gandía",
-    author_email="-",
+    author_email="mgarcia0094@gmail.com",
     description="A quickly backtesting library for inversion strategies",
     long_description=long_description,
     long_description_content_type="text/markdown",

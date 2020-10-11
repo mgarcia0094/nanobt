@@ -1,4 +1,4 @@
-# Package nanobt
+# Package nanobt (v 0.1.0)
 
 A quickly backtesting library for inversion strategies
 
@@ -11,6 +11,7 @@ pip install nanobt
 # Data as pd.DataFrame
 
 Columns required = ['datetime', 'open', 'high', 'low', 'close', 'volume']
+
 Column 'datetime' must be datetime object.
 
 # Code example
@@ -19,19 +20,14 @@ Column 'datetime' must be datetime object.
 ```python
 
 from nanobt.backtesting import Backtesting
-from nanobt.trades import TradeHistory
+from nanobt.trades import TradeHistory, SideOrder
 import pandas as pd
 
 INIT_PORTFOLIO = 1000
 class BuyAndHoldStrategy(Backtesting):
-    def __init__(self):
-        super().__init__()
-        self.buy_and_hold = False
-
     def next(self):
-        if not self.buy_and_hold:
-            self.buy_and_hold = True
-            self.buy()
+        if not self.position:
+            self.entry(SideOrder.BUY)
 
 data = pd.read_csv('./data/binance_BTCUSDT_5m.csv')
 data['datetime'] = pd.to_datetime(data['time'], unit='s')
